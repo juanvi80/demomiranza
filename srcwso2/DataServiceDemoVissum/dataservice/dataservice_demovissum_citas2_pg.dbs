@@ -1,0 +1,61 @@
+<data name="dataservice_demovissum_citas2_pg" serviceGroup="" serviceNamespace="" transports="http https">
+    <description/>
+    <config id="postgrescitas">
+        <property name="org.wso2.ws.dataservice.user">postgres</property>
+        <property name="org.wso2.ws.dataservice.password">123456</property>
+        <property name="org.wso2.ws.dataservice.protocol">jdbc:postgresql://postgrescitas:5432/citas2</property>
+        <property name="org.wso2.ws.dataservice.driver">org.postgresql.Driver</property>
+    </config>
+    <query id="GetPacientes" useConfig="postgrescitas">
+        <sql>SELECT id, numero, nombre as npila, apellido1, apellido2, nif, apellido2 || apellido1 || ',' ||nombre as nombre FROM pacdatos</sql>
+        <result element="pacientes" rowName="paciente">
+            <element column="ID" name="id" exportType="SCALAR" xsdType="xs:integer"/>
+            <element column="numero" name="numero" xsdType="xs:string"/>
+            <element column="npila" name="npila" xsdType="xs:string"/>
+            <element column="apellido1" name="apellido1" xsdType="xs:string"/>
+            <element column="apellido2" name="apellido2" xsdType="xs:string"/>
+            <element column="nif" name="cif" xsdType="xs:string"/>
+            <element column="nombre" name="nombre" xsdType="xs:string"/>
+        </result>
+    </query>
+    <query id="GetCentros" useConfig="postgrescitas">
+        <sql>SELECT id, codigo, centro, cif FROM centro</sql>
+        <result element="centros" rowName="centro">
+            <element column="ID" name="id" exportType="SCALAR" xsdType="xs:integer"/>
+            <element column="codigo" name="codigo" xsdType="xs:string"/>
+            <element column="centro" name="centro" xsdType="xs:string"/>
+            <element column="CIF" name="cif" xsdType="xs:string"/>
+        </result>
+    </query>
+    <query id="GetCitasByPaciente" useConfig="postgrescitas">
+        <sql>SELECT c.id, c.numerohistoria, c.medico, c.nombre_medico, c.dpto, c.famtipocita, c.tipocita, c.fecha, c.hora, c.estado, c.codigocentro, c.centro FROM citaspac c
+inner join pacdatos p on p.numero=c.numerohistoria
+where p.NIF=:cif</sql>
+        <param name="cif" paramType="SCALAR" sqlType="STRING"/>
+        <result element="citas" rowName="cita">
+            <element column="ID" name="id" exportType="SCALAR" xsdType="xs:integer"/>
+            <element column="numerohistoria" name="numerohistoria" xsdType="xs:string"/>
+            <element column="medico" name="medico" xsdType="xs:string"/>
+            <element column="nombre_medico" name="nombre_medico" xsdType="xs:string"/>
+            <element column="dpto" name="dpto" xsdType="xs:string"/>
+            <element column="famtipocita" name="famtipocita" xsdType="xs:string"/>
+            <element column="tipocita" name="tipocita" xsdType="xs:string"/>
+            <element column="fecha" name="fecha" xsdType="xs:string"/>
+            <element column="hora" name="hora" xsdType="xs:string"/>
+            <element column="estado" name="estado" xsdType="xs:string"/>
+            <element column="codigocentro" name="codigocentro" xsdType="xs:string"/>
+            <element column="centro" name="centro" xsdType="xs:string"/>
+        </result>
+    </query>
+    <resource method="GET" path="pacientes">
+        <call-query href="GetPacientes"/>
+    </resource>
+    <resource method="GET" path="centros">
+        <call-query href="GetCentros"/>
+    </resource>
+    <resource method="GET" path="citasbypaciente">
+        <call-query href="GetCitasByPaciente">
+            <with-param name="cif" query-param="cif"/>
+        </call-query>
+    </resource>
+</data>

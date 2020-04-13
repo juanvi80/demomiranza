@@ -1,0 +1,38 @@
+{
+	"pacientes": {
+		"paciente": [
+			{
+				"id": "1",
+				"numero": "01",
+				"nombre": "NDEMO1",
+				"apellido1": "DEMO1",
+				"apellido2": "DEMO1",
+				"cif": "CIF1"
+			},
+			{
+				"id": "2",
+				"numero": "02",
+				"nombre": "NDEMO2",
+				"apellido1": "DEMO2",
+				"apellido2": "DEMO2",
+				"cif": "CIF2"
+			},
+			{
+				"id": "3",
+				"numero": "03",
+				"nombre": "NDEMO3",
+				"apellido1": "DEMO3",
+				"apellido2": "DEMO3",
+				"cif": "CIF3"
+			},
+			{
+				"id": "4",
+				"numero": "04",
+				"nombre": "NDEMO4",
+				"apellido1": "DEMO4",
+				"apellido2": "DEMO4",
+				"cif": "CIF4"
+			}
+		]		
+	}
+}

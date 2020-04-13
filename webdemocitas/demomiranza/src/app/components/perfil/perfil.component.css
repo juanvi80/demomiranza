@@ -1,0 +1,12 @@
+.mat-card {
+    height: 100%;
+    border: 0 0 0 0 important!;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-dialog-content {
+    height: 80%;
+}

@@ -1,0 +1,36 @@
+table {
+    width: 100%;
+}
+
+.titulo {
+    font-size: 24px;
+    /*font-weight: bold;*/
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-column-id {
+    flex: 0 0 25% !important;
+    min-width: 14px !important;
+}
+
+.mat-column-codigo {
+    flex: 0 0 25% !important;
+    min-width: 14px !important;
+}
+
+.mat-column-centro {
+    flex: 0 0 50% !important;
+    min-width: 14px !important;
+}
+
+.app-button {
+    margin: 5px;
+}
+
+.card-sinborde {
+    border: 0px solid #000 !important;
+}

@@ -1,0 +1,79 @@
+<data name="dataservice_demovissum_citas1" serviceGroup="" serviceNamespace="">
+    <description/>
+    <config id="MysqlCitas">
+        <property name="org.wso2.ws.dataservice.user">regadmin</property>
+        <property name="org.wso2.ws.dataservice.password">123456</property>
+        <property name="org.wso2.ws.dataservice.protocol">jdbc:mysql://mysqlcitas:3306/citas1</property>
+        <property name="org.wso2.ws.dataservice.driver">com.mysql.jdbc.Driver</property>
+    </config>
+    <query id="GetPacientes" useConfig="MysqlCitas">
+        <sql>SELECT ID,
+    HISTORIA,
+    NOMBRE,
+    CIF
+FROM PACIENTE</sql>
+        <result element="pacientes" rowName="paciente">
+            <element column="ID" name="id" exportType="SCALAR" xsdType="xs:integer"/>
+            <element column="HISTORIA" name="numero" xsdType="xs:string"/>
+            <element column="NOMBRE" name="nombre" xsdType="xs:string"/>
+            <element column="CIF" name="cif" xsdType="xs:string"/>
+        </result>
+    </query>
+    <query id="GetCentros" useConfig="MysqlCitas">
+        <sql>SELECT ID,
+    K_CENTRO,
+    NOMBRE,
+  CIF 
+
+FROM CENTRO</sql>
+        <result element="centros" rowName="centro">
+            <element column="ID" name="id" exportType="SCALAR" xsdType="xs:integer"/>
+            <element column="K_CENTRO" name="codigo" xsdType="xs:string"/>
+            <element column="NOMBRE" name="centro" xsdType="xs:string"/>
+            <element column="CIF" name="cif" xsdType="xs:string"/>
+        </result>
+    </query>
+    <query id="GetCitasByPaciente" useConfig="MysqlCitas">
+        <sql>SELECT C.ID,
+    C.HISTORIA,
+    C.MEDICO,
+    C.NOMBRE_MEDICO,
+    C.DPTO,
+    C.FAMTIPOCITA,
+    C.TIPOCITA,
+    C.FECHA,
+    C.HORA,
+    C.ESTADO,
+    C.CEN,
+    C.CENTRODESC
+FROM CITAS C
+INNER JOIN PACIENTE P ON P.HISTORIA=C.HISTORIA
+WHERE P.CIF= :cif </sql>
+        <param name="cif" paramType="SCALAR" sqlType="STRING"/>
+        <result element="citas" rowName="cita">
+            <element column="ID" name="id" exportType="SCALAR" xsdType="xs:integer"/>
+            <element column="HISTORIA" name="numerohistoria" xsdType="xs:string"/>
+            <element column="MEDICO" name="medico" xsdType="xs:string"/>
+            <element column="NOMBRE_MEDICO" name="nombre_medico" xsdType="xs:string"/>
+            <element column="DPTO" name="dpto" xsdType="xs:string"/>
+            <element column="FAMTIPOCITA" name="famtipocita" xsdType="xs:string"/>
+            <element column="TIPOCITA" name="tipocita" xsdType="xs:string"/>
+            <element column="FECHA" name="fecha" xsdType="xs:string"/>
+            <element column="HORA" name="hora" xsdType="xs:string"/>
+            <element column="ESTADO" name="estado" xsdType="xs:string"/>
+            <element column="CEN" name="codigocentro" xsdType="xs:string"/>
+            <element column="CENTRODESC" name="centro" xsdType="xs:string"/>
+        </result>
+    </query>
+    <resource method="GET" path="pacientes">
+        <call-query href="GetPacientes"/>
+    </resource>
+    <resource method="GET" path="centros">
+        <call-query href="GetCentros"/>
+    </resource>
+    <resource method="GET" path="citasbypaciente">
+        <call-query href="GetCitasByPaciente">
+            <with-param name="cif" query-param="cif"/>
+        </call-query>
+    </resource>
+</data>

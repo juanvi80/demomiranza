@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="DemoVissumApi" groupId="com.vissum.DemoVissumEsb.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/DemoVissumApi.xml</file>
+    </artifact>
+    <artifact name="Citas2pg_Endpoint" groupId="com.vissum.DemoVissumEsb.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Citas2pg_Endpoint.xml</file>
+    </artifact>
+    <artifact name="Citas2V_Endpoint" groupId="com.vissum.DemoVissumEsb.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Citas2V_Endpoint.xml</file>
+    </artifact>
+    <artifact name="Citas1" groupId="com.vissum.DemoVissumEsb.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Citas1.xml</file>
+    </artifact>
+    <artifact name="Citas1ByPac" groupId="com.vissum.DemoVissumEsb.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Citas1ByPac.xml</file>
+    </artifact>
+</artifacts>

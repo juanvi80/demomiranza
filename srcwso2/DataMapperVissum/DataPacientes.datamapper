@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datamapper:DataMapperRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:datamapper="http:///org/wso2/developerstudio/eclipse/gmf/datamapper">
+  <input>
+    <treeNode name="root" schemaDataType="OBJECT" level="1">
+      <node name="pacientes" schemaDataType="OBJECT" level="2">
+        <node name="paciente" level="3">
+          <node name="id" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/id"/>
+            <properties key="nullable" value="false"/>
+            <outNode>
+              <outgoingLink inNode="//@output/@treeNode.0/@node.0/@node.0/@node.0/@inNode"/>
+            </outNode>
+            <inNode/>
+          </node>
+          <node name="numero" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/numero"/>
+            <properties key="nullable" value="false"/>
+            <outNode/>
+            <inNode/>
+          </node>
+          <node name="nombre" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/nombre"/>
+            <properties key="nullable" value="false"/>
+            <outNode>
+              <outgoingLink inNode="//@operators.1/@basicContainer/@leftContainer/@leftConnectors.1/@inNode"/>
+            </outNode>
+            <inNode/>
+          </node>
+          <node name="apellido1" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/apellido1"/>
+            <properties key="nullable" value="false"/>
+            <outNode>
+              <outgoingLink inNode="//@operators.0/@basicContainer/@leftContainer/@leftConnectors.0/@inNode"/>
+            </outNode>
+            <inNode/>
+          </node>
+          <node name="apellido2" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/apellido2"/>
+            <properties key="nullable" value="false"/>
+            <outNode>
+              <outgoingLink inNode="//@operators.0/@basicContainer/@leftContainer/@leftConnectors.1/@inNode"/>
+            </outNode>
+            <inNode/>
+          </node>
+          <node name="cif" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/cif"/>
+            <properties key="nullable" value="false"/>
+            <outNode/>
+            <inNode/>
+          </node>
+          <properties key="type" value="array"/>
+          <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente"/>
+          <properties key="items_id" value="http://wso2jsonschema.org/pacientes/paciente/0"/>
+          <properties key="items_type" value="object"/>
+          <properties key="nullable" value="false"/>
+          <properties key="properties_id" value="{id={id=http://wso2jsonschema.org/pacientes/paciente/0/id, type=string}, numero={id=http://wso2jsonschema.org/pacientes/paciente/0/numero, type=string}, nombre={id=http://wso2jsonschema.org/pacientes/paciente/0/nombre, type=string}, apellido1={id=http://wso2jsonschema.org/pacientes/paciente/0/apellido1, type=string}, apellido2={id=http://wso2jsonschema.org/pacientes/paciente/0/apellido2, type=string}, cif={id=http://wso2jsonschema.org/pacientes/paciente/0/cif, type=string}}"/>
+          <outNode/>
+          <inNode/>
+        </node>
+        <properties key="type" value="object"/>
+        <properties key="id" value="http://wso2jsonschema.org/pacientes"/>
+        <properties key="nullable" value="false"/>
+        <properties key="properties_id" value="{paciente={id=http://wso2jsonschema.org/pacientes/paciente, type=array, items=[{id=http://wso2jsonschema.org/pacientes/paciente/0, type=object, properties={id={id=http://wso2jsonschema.org/pacientes/paciente/0/id, type=string}, numero={id=http://wso2jsonschema.org/pacientes/paciente/0/numero, type=string}, nombre={id=http://wso2jsonschema.org/pacientes/paciente/0/nombre, type=string}, apellido1={id=http://wso2jsonschema.org/pacientes/paciente/0/apellido1, type=string}, apellido2={id=http://wso2jsonschema.org/pacientes/paciente/0/apellido2, type=string}, cif={id=http://wso2jsonschema.org/pacientes/paciente/0/cif, type=string}}}]}}"/>
+        <outNode/>
+        <inNode/>
+      </node>
+      <properties key="type" value="object"/>
+      <properties key="$schema" value="http://wso2.org/json-schema/wso2-data-mapper-v5.0.0/schema#"/>
+      <properties key="id" value="http://wso2jsonschema.org"/>
+      <properties key="nullable" value="false"/>
+      <outNode/>
+      <inNode/>
+    </treeNode>
+  </input>
+  <output>
+    <treeNode name="root" schemaDataType="OBJECT" level="1">
+      <node name="pacientes" schemaDataType="OBJECT" level="2">
+        <node name="paciente" level="3">
+          <node name="id" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/id"/>
+            <properties key="nullable" value="false"/>
+            <outNode/>
+            <inNode incomingLink="//@input/@treeNode.0/@node.0/@node.0/@node.0/@outNode/@outgoingLink.0"/>
+          </node>
+          <node name="numero" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/numero"/>
+            <properties key="nullable" value="false"/>
+            <outNode/>
+            <inNode/>
+          </node>
+          <node name="nombre" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/nombre"/>
+            <properties key="nullable" value="false"/>
+            <outNode/>
+            <inNode incomingLink="//@operators.1/@basicContainer/@rightContainer/@rightConnectors.0/@outNode/@outgoingLink.2"/>
+          </node>
+          <node name="cif" schemaDataType="STRING" level="4">
+            <properties key="type" value="string"/>
+            <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente/0/cif"/>
+            <properties key="nullable" value="false"/>
+            <outNode/>
+            <inNode/>
+          </node>
+          <properties key="type" value="array"/>
+          <properties key="id" value="http://wso2jsonschema.org/pacientes/paciente"/>
+          <properties key="items_id" value="http://wso2jsonschema.org/pacientes/paciente/0"/>
+          <properties key="items_type" value="object"/>
+          <properties key="nullable" value="false"/>
+          <properties key="properties_id" value="{id={id=http://wso2jsonschema.org/pacientes/paciente/0/id, type=string}, numero={id=http://wso2jsonschema.org/pacientes/paciente/0/numero, type=string}, nombre={id=http://wso2jsonschema.org/pacientes/paciente/0/nombre, type=string}, cif={id=http://wso2jsonschema.org/pacientes/paciente/0/cif, type=string}}"/>
+          <outNode/>
+          <inNode/>
+        </node>
+        <properties key="type" value="object"/>
+        <properties key="id" value="http://wso2jsonschema.org/pacientes"/>
+        <properties key="nullable" value="false"/>
+        <properties key="properties_id" value="{paciente={id=http://wso2jsonschema.org/pacientes/paciente, type=array, items=[{id=http://wso2jsonschema.org/pacientes/paciente/0, type=object, properties={id={id=http://wso2jsonschema.org/pacientes/paciente/0/id, type=string}, numero={id=http://wso2jsonschema.org/pacientes/paciente/0/numero, type=string}, nombre={id=http://wso2jsonschema.org/pacientes/paciente/0/nombre, type=string}, cif={id=http://wso2jsonschema.org/pacientes/paciente/0/cif, type=string}}}]}}"/>
+        <outNode/>
+        <inNode/>
+      </node>
+      <properties key="type" value="object"/>
+      <properties key="$schema" value="http://wso2.org/json-schema/wso2-data-mapper-v5.0.0/schema#"/>
+      <properties key="id" value="http://wso2jsonschema.org"/>
+      <properties key="nullable" value="false"/>
+      <outNode/>
+      <inNode/>
+    </treeNode>
+  </output>
+  <operators xsi:type="datamapper:Concat" defaultInputConnectors="2" defaultOutputConnectors="1" inputSizeFixed="false" operatorType="CONCAT" delimiter=" ">
+    <basicContainer>
+      <leftContainer>
+        <leftConnectors>
+          <inNode incomingLink="//@input/@treeNode.0/@node.0/@node.0/@node.3/@outNode/@outgoingLink.0"/>
+        </leftConnectors>
+        <leftConnectors>
+          <inNode incomingLink="//@input/@treeNode.0/@node.0/@node.0/@node.4/@outNode/@outgoingLink.0"/>
+        </leftConnectors>
+      </leftContainer>
+      <rightContainer>
+        <rightConnectors>
+          <outNode>
+            <outgoingLink inNode="//@operators.1/@basicContainer/@leftContainer/@leftConnectors.0/@inNode"/>
+          </outNode>
+        </rightConnectors>
+      </rightContainer>
+    </basicContainer>
+  </operators>
+  <operators xsi:type="datamapper:Concat" defaultInputConnectors="2" defaultOutputConnectors="1" inputSizeFixed="false" operatorType="CONCAT" delimiter=" ">
+    <basicContainer>
+      <leftContainer>
+        <leftConnectors>
+          <inNode incomingLink="//@operators.0/@basicContainer/@rightContainer/@rightConnectors.0/@outNode/@outgoingLink.0"/>
+        </leftConnectors>
+        <leftConnectors>
+          <inNode incomingLink="//@input/@treeNode.0/@node.0/@node.0/@node.2/@outNode/@outgoingLink.0"/>
+        </leftConnectors>
+      </leftContainer>
+      <rightContainer>
+        <rightConnectors>
+          <outNode>
+            <outgoingLink/>
+            <outgoingLink/>
+            <outgoingLink inNode="//@output/@treeNode.0/@node.0/@node.0/@node.2/@inNode"/>
+          </outNode>
+        </rightConnectors>
+      </rightContainer>
+    </basicContainer>
+  </operators>
+</datamapper:DataMapperRoot>

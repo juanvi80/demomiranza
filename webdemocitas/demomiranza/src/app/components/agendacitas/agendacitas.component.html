@@ -1,0 +1,84 @@
+<mat-toolbar color="secondary">
+    <mat-toolbar-row>
+        <button class="app-button" (click)="volver()" mat-icon-button color="secondary"> <mat-icon>arrow_back</mat-icon></button>
+        <span class="title">Agenda de citas</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div *ngIf="isLoading;" align="center">
+    <h2>Cargando datos por favor espere ....</h2>
+
+    <mat-spinner></mat-spinner>
+</div>
+
+<mat-toolbar *ngIf="!isLoading;" color="secondary">
+    <mat-toolbar-row>
+        <span class="title">- Pacientes de todos los centros - </span>
+        <!-- <button class="app-button" (click)="nuevo()" *ngIf="editableP()" mat-flat-button color="secondary"> <mat-icon>add</mat-icon>Nueva Linea </button>-->
+
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<table class="tablapac" *ngIf="!isLoading;" mat-table [dataSource]="dataSource" matSort>
+    <!-- Progress Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id - Numero </th>
+        <td mat-cell [style.color]="colorRow(row)" class="mat-column-id" *matCellDef="let row"> {{row.id}} - {{row.numero}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nif">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nif </th>
+        <td mat-cell [style.color]="colorRow(row)" class="mat-column-nif" *matCellDef="let row"> {{row.cif}} </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Paciente </th>
+        <td mat-cell [style.color]="colorRow(row)" class="mat-column-nombre" *matCellDef="let row"> {{row.nombre}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (click)="selecpaciente(row)" *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+</table>
+<mat-paginator [pageSizeOptions]="[3, 6, 35, 100]"></mat-paginator>
+<mat-toolbar *ngIf="!isLoading;" color="secondary">
+    <mat-toolbar-row>
+        <span class="title">- Citas del paciente seleccionado - </span>
+        <!-- <button class="app-button" (click)="nuevo()" *ngIf="editableP()" mat-flat-button color="secondary"> <mat-icon>add</mat-icon>Nueva Linea </button>-->
+
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<table *ngIf="!isLoading;" mat-table [dataSource]="citas" matSort>
+    <!-- Progress Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id - Numero </th>
+        <td mat-cell [style.color]="colorRow(row)" class="mat-column-id" *matCellDef="let row"> {{row.id}} - {{row.numerohistoria}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="medico">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Medico </th>
+        <td mat-cell [style.color]="colorRow(row)" class="mat-column-nombre" *matCellDef="let row"> {{row.medico}} - {{row.nombre_medico}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dpto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Departamento - T.Cita</th>
+        <td mat-cell [style.color]="colorRow(row)" class="mat-column-estado" *matCellDef="let row"> {{row.dpto}} - {{row.famtipocita}} - {{row.tipocita}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+        <td mat-cell [style.color]="colorRow(row)" class="mat-column-unid" *matCellDef="let row"> {{row.fecha}} {{row.hora}} </td>
+    </ng-container>
+    <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+        <td mat-cell [style.color]="colorRow(row)" class="mat-column-unid" *matCellDef="let row"> {{row.estado}} </td>
+    </ng-container>
+    <ng-container matColumnDef="centro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Centro </th>
+        <td mat-cell [style.color]="colorRow(row)" class="mat-column-centro" *matCellDef="let row"> {{row.codigocentro}} - {{row.centro}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;">
+    </tr>
+</table>

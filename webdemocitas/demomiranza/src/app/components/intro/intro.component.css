@@ -1,0 +1,16 @@
+.gridheight {
+    height: fit-content;
+}
+
+.mat-icon {
+    height: 162px !important;
+    width: 162px !important;
+    font-size: 162px !important;
+}
+
+.app-button {
+    text-align: center;
+    font-size: 22px !important;
+    vertical-align: bottom !important;
+    margin: 15px 0;
+}

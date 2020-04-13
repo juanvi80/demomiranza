@@ -1,0 +1,28 @@
+map_S_root_S_root = function(){ 
+var outputroot={};
+var CONCAT_5_0 = '';
+var CONCAT_6_0 = '';
+
+var count_i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238 = 0;
+outputroot =  {};
+outputroot.pacientes =  {};
+outputroot.pacientes.paciente =  [];
+
+for(i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238 in inputroot.pacientes.paciente){
+CONCAT_5_0 = inputroot.pacientes.paciente[i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238].apellido1.toString().concat(' ',inputroot.pacientes.paciente[i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238].apellido2);
+CONCAT_6_0 = CONCAT_5_0.toString().concat(' ',inputroot.pacientes.paciente[i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238].nombre);
+outputroot.pacientes.paciente[count_i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238] =  {};
+outputroot.pacientes.paciente[count_i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238].id = inputroot.pacientes.paciente[i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238].id;
+outputroot.pacientes.paciente[count_i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238].nombre = CONCAT_6_0;
+
+count_i_paciente_e5b2a222_7563_480a_8cb7_e648a33cc238++;
+}
+return outputroot;
+};
+
+
+
+
+
+
+

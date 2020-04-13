@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="dataservice_demovissum_citas1" groupId="com.vissum.DataServiceDemoVissum.dataservice" version="1.0.0" type="service/dataservice" serverRole="DataServicesServer">
+        <file>dataservice/dataservice_demovissum_citas1.dbs</file>
+    </artifact>
+    <artifact name="dataservice_demovissum_citas2_pg" groupId="com.vissum.DataServiceDemoVissum.dataservice" version="1.0.0" type="service/dataservice" serverRole="DataServicesServer">
+        <file>dataservice/dataservice_demovissum_citas2_pg.dbs</file>
+    </artifact>
+</artifacts>

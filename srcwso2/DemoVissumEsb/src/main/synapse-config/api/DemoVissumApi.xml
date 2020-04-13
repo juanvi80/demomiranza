@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/vissumdemo" name="DemoVissumApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="HEAD DELETE POST GET OPTIONS PUT PATCH" uri-template="/apiv1/pacientescif/{operation}?cif={cif}">
+        <inSequence>
+            <property description="setcitascif" expression="json-eval($.citas.cita)" name="citas1" scope="default" type="STRING"/>
+            <!-- <property expression="$url:cif" name="uri.var.cif" scope="default" type="STRING"/>
+            <property expression="$url:operation" name="uri.var.operation" scope="default" type="STRING"/>-->
+            <header action="remove" name="Content-Type" scope="transport"/>
+            <call>
+                <endpoint>
+                    <http method="get" uri-template="http://localhost:8280/services/dataservice_demovissum_citas1/{uri.var.operation}?cif={uri.var.cif}">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>1</progressionFactor>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+            <property description="setcitas" expression="json-eval($.citas.cita)" name="citas1" scope="default" type="STRING"/>
+            <header action="remove" name="Content-Type" scope="transport"/>
+            <call>
+                <endpoint>
+                    <http method="get" uri-template="http://localhost:8280/services/dataservice_demovissum_citas2_pg/{uri.var.operation}?cif={uri.var.cif}">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>1</progressionFactor>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+            <property description="setcitas2" expression="json-eval($.citas.cita)" name="citas2" scope="default" type="STRING"/>
+            <payloadFactory media-type="json">
+                <format>[$1,$2]</format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:citas1"/>
+                    <arg evaluator="xml" expression="$ctx:citas2"/>
+                </args>
+            </payloadFactory>
+            <!-- <log description="logcitas2" level="custom">
+                <property expression="$body" name="MESSAGE2"/>
+            </log>-->
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="HEAD DELETE POST GET OPTIONS PUT PATCH" uri-template="/apiv1/{operation}">
+        <inSequence>
+            <!-- <filter source="get-property('axis2', 'HTTP_METHOD')" regex="OPTIONS">
+            <then>
+               <property name="Access-Control-Request-Headers" value="authorization,content-type" scope="transport"/>
+               <property name="Access-Control-Allow-Headers" value="authorization,Access-Control-Allow-Origin,Content-Type,X-Requested-With,Accept" scope="transport"/>
+               <property name="Access-Control-Allow-Methods" value="GET,POST,PUT,DELETE,OPTIONS" scope="transport"/>
+               <property name="Access-Control-Allow-Origin" value="*" scope="transport"/>
+               <property name="RESPONSE" value="true" scope="default" type="STRING"/>
+               <respond/>
+            </then>
+         </filter>-->
+            <switch source="$ctx:uri.var.operation">
+                <case regex="centros">
+                    <call>
+                        <endpoint key="Citas1"/>
+                    </call>
+                    <property description="setcentros" expression="json-eval($.centros.centro)" name="centros1" scope="default" type="STRING"/>
+                    <!-- <enrich>
+		                <source clone="true" type="body"/>
+		                <target property="centros1" type="property"/>
+		            </enrich>-->
+                    <log description="logproperty" level="custom">
+                        <property expression="$ctx:centros1" name="MESSAGE1"/>
+                    </log>
+                    <call>
+                        <endpoint key="Citas2pg_Endpoint"/>
+                    </call>
+                    <property description="setcentros2" expression="json-eval($.centros.centro)" name="centros2" scope="default" type="STRING"/>
+                    <payloadFactory media-type="json">
+                        <format>[$1,$2]</format>
+                        <args>
+                            <arg evaluator="xml" expression="$ctx:centros1"/>
+                            <arg evaluator="xml" expression="$ctx:centros2"/>
+                        </args>
+                    </payloadFactory>
+                    <!-- <payloadFactory media-type="xml">
+				        <format>
+				           <completeJson xmlns="">
+				              <firstjson>$1</firstjson>
+				              <secondjson>$2</secondjson>
+				           </completeJson>
+				        </format>
+				        <args>
+				           <arg evaluator="xml" expression="get-property('centros1')"/>
+				           <arg evaluator="xml" expression="$body"/>
+				        </args>
+				     </payloadFactory>
+                    <log description="logcentros2" level="custom">
+                        <property expression="$body" name="MESSAGE2"/>
+                    </log>-->
+                    <respond/>
+                </case>
+                <case regex="pacientes">
+                    <call>
+                        <endpoint key="Citas1"/>
+                    </call>
+                    <property description="setpacientes" expression="json-eval($.pacientes.paciente)" name="pacientes1" scope="default" type="STRING"/>
+                    <log description="logproperty" level="custom">
+                        <property expression="$ctx:pacientes1" name="MESSAGE1"/>
+                    </log>
+                    <call>
+                        <endpoint key="Citas2pg_Endpoint"/>
+                    </call>
+                    <property description="setcentros2" expression="json-eval($.pacientes.paciente)" name="pacientes2" scope="default" type="STRING"/>
+                    <payloadFactory media-type="json">
+                        <format>[$1,$2]</format>
+                        <args>
+                            <arg evaluator="xml" expression="$ctx:pacientes1"/>
+                            <arg evaluator="xml" expression="$ctx:pacientes2"/>
+                        </args>
+                    </payloadFactory>
+                    <!-- <log description="logpacientes2" level="custom">
+                        <property expression="$body" name="MESSAGE2"/>
+                    </log>-->
+                    <respond/>
+                </case>
+                <case regex="pacientesdm">
+                    <call>
+                        <endpoint key="Citas1"/>
+                    </call>
+                    <property description="setpacientes" expression="json-eval($.pacientes.paciente)" name="pacientes1" scope="default" type="STRING"/>
+                    <log description="logproperty" level="custom">
+                        <property expression="$ctx:pacientes1" name="MESSAGE1"/>
+                    </log>
+                    <call>
+                        <endpoint key="Citas2pg_Endpoint"/>
+                    </call>
+                    <datamapper config="gov:datamapper/DataPacientes.dmc" description="datamapper" inputSchema="gov:datamapper/DataPacientes_inputSchema.json" inputType="JSON" outputSchema="gov:datamapper/DataPacientes_outputSchema.json" outputType="JSON" xsltStyleSheet="gov:datamapper/DataPacientes_xsltStyleSheet.xml"/>
+                    <property description="setcentros2" expression="json-eval($.pacientes.paciente)" name="pacientes2" scope="default" type="STRING"/>
+                    <payloadFactory media-type="json">
+                        <format>[$1,$2]</format>
+                        <args>
+                            <arg evaluator="xml" expression="$ctx:pacientes1"/>
+                            <arg evaluator="xml" expression="$ctx:pacientes2"/>
+                        </args>
+                    </payloadFactory>
+                    <!-- <payloadFactory media-type="xml">
+				        <format>
+				           <completeJson xmlns="">
+				              <firstjson>$1</firstjson>
+				              <secondjson>$2</secondjson>
+				           </completeJson>
+				        </format>
+				        <args>
+				           <arg evaluator="xml" expression="get-property('centros1')"/>
+				           <arg evaluator="xml" expression="$body"/>
+				        </args>
+				     </payloadFactory>
+                    <log description="logpacientes2" level="custom">
+                        <property expression="$body" name="MESSAGE2"/>
+                    </log>-->
+                    <respond/>
+                </case>
+                <default>
+                    <log description="defecto" level="custom">
+                        <property name="message" value="Entro al default"/>
+                    </log>
+                    <respond description="Responder"/>
+                </default>
+            </switch>
+        </inSequence>
+        <outSequence>
+            <respond/>
+        </outSequence>
+        <faultSequence>
+            <log level="custom">
+                <property name="text" value="An unexpected error occured"/>
+                <property expression="get-property('ERROR_MESSAGE')" name="message"/>
+                <property expression="get-property('ERROR_CODE')" name="code"/>
+                <property expression="get-property('ERROR_DETAIL')" name="detail"/>
+                <property expression="get-property('ERROR_EXCEPTION')" name="exception"/>
+            </log>
+        </faultSequence>
+    </resource>
+</api>

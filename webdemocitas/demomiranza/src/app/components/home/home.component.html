@@ -1,0 +1,100 @@
+<mat-sidenav-container [class.m2app-dark]="isDarkTheme" fullscreen>
+
+    <mat-sidenav #sidenav mode="over" class="app-sidenav" color="primary">
+
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <h2 class="toolbar-title">Miranza Menu Principal </h2>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-nav-list>
+
+            <ng-container>
+
+                <h2 matSubheader> Opciones </h2>
+
+                <a mat-list-item routerLink="/main" style="height: 0;"></a>
+
+                <a mat-list-item (click)="onClickLink('/main/intro')" routerLinkActive="list-item-active">
+                    <mat-icon matListIcon class="nav-list-icon"> home </mat-icon>
+                    Home
+                </a>
+                <a mat-list-item (click)="onClickLink('main/centros')" routerLinkActive="list-item-active">
+                    <mat-icon matListIcon class="nav-list-icon"> receipt </mat-icon>
+                    Centros activos
+                </a>
+                <a mat-list-item (click)="onClickLink('main/citas')" routerLinkActive="list-item-active">
+                    <mat-icon matListIcon class="nav-list-icon"> receipt </mat-icon>
+                    Consulta de citas de pacientes
+                </a>
+                <a mat-list-item (click)="onClickLink('main/perfil')" routerLinkActive="list-item-active">
+                    <mat-icon matListIcon class="nav-list-icon"> account_box </mat-icon>
+                    Mi perfil
+                </a>
+
+                <mat-divider></mat-divider>
+
+                <a mat-list-item (click)="logout()" routerLinkActive="list-item-active">
+                    <mat-icon matListIcon class="nav-list-icon"> input </mat-icon>
+                    Cerrar Sesion
+                </a>
+
+            </ng-container>
+
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <button mat-button class="app-menu-button" (click)="sidenav.toggle()">
+              <i class="material-icons">menu</i>
+            </button>
+                <span class="title">Miranza Agenda de citas</span>
+
+                <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+                    <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+
+                        <li fxHide.xs>
+                            <button mat-icon-button>
+                    <mat-icon>settings</mat-icon>
+                  </button>
+                        </li>
+                        <li fxHide.xs>
+                            <button mat-icon-button>
+                            <mat-icon>help_outline</mat-icon>
+                          </button>
+                        </li>
+
+                        <li>
+                            <button mat-icon-button [matMenuTriggerFor]="auth">
+                            <mat-icon>person_outline</mat-icon>
+                          </button>
+                            <mat-menu #auth="matMenu">
+
+                                <button mat-menu-item (click)="onClickLink('main/perfil')">
+                              <mat-icon>person_outline</mat-icon>
+                              <span>Perfil</span>
+                            </button>
+
+                                <mat-divider></mat-divider>
+
+                                <button mat-menu-item (click)="logout()">
+                              <mat-icon>exit_to_app</mat-icon>
+                              <span>Salir</span>
+                            </button>
+
+                            </mat-menu>
+                        </li>
+
+                    </ul>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

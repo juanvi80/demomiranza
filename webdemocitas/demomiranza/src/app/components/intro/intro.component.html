@@ -1,0 +1,21 @@
+<mat-grid-list cols="4" class="gridheight" rowHeight="75px">
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <h1>Bienvenidos a la agenda de citas de Miranza</h1>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="4">
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <button class="app-button" (click)="centros()" mat-flat-button color="secondary"> <mat-icon>list</mat-icon><div>Centros Activos</div></button>
+
+        <!--<canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+        </canvas>-->
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <button class="app-button" (click)="citas()" mat-flat-button color="secondary"> <mat-icon>add_to_queue</mat-icon><div>Consulta de citas de pacientes</div> </button>
+
+        <!--<canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+
+        </canvas>-->
+    </mat-grid-tile>
+
+</mat-grid-list>

@@ -1,0 +1,50 @@
+<div class="formlogin-container" *ngIf="mostrarLogin">
+    <mat-card>
+        <mat-card-content>
+            <form (ngSubmit)="login( fLogin )" #fLogin [formGroup]="forma">
+                <h2>Demo wso2</h2>
+                <div class="logoContainer">
+                    <img class="logoImage" [src]="logoUrl">
+                </div>
+                <mat-form-field class="full-width-input">
+                    <input matInput placeholder="User" formControlName="userName" [(ngModel)]="loginUser.email" required>
+                    <mat-error *ngIf="isFieldInvalid('userName')">
+                        Por favor inserte el usuario
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width-input">
+                    <input matInput type="password" placeholder="Password" [(ngModel)]="loginUser.password" required (keyup.enter)="login(fLogin)" formControlName="password" required>
+                    <mat-error *ngIf="isFieldInvalid('userName')">
+                        Por favor inserte el password
+                    </mat-error>
+                </mat-form-field>
+                <button *ngIf="!isLoginLoading" mat-raised-button color="primary">Entrar</button>
+                <button *ngIf="isLoginLoading" mat-icon-button><mat-spinner diameter="40"></mat-spinner></button>
+                <div>
+                    <mat-label *ngIf="isUnauthorized" style="color: red;">
+                        <mat-icon>information-circle-outline</mat-icon>
+                        Error usuario/password incorrecto</mat-label>
+
+                </div>
+                <div style="margin: 15px 15px 15px 15px;">
+                    <mat-button-toggle-group [(value)]="loginUser.red" #group="matButtonToggleGroup">
+                        <mat-button-toggle value="INTERNET" aria-label="Internet">
+                            <mat-icon>cloud</mat-icon>
+                            Internet
+                        </mat-button-toggle>
+                        <mat-button-toggle value="INTRANET" aria-label="Intranet">
+                            <mat-icon>personal_video</mat-icon>
+                            Intranet
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+                <div>
+                    <mat-label>
+                        <mat-icon>information-circle-outline</mat-icon>
+                        Version:{{version}}</mat-label>
+                </div>
+            </form>
+
+        </mat-card-content>
+    </mat-card>
+</div>

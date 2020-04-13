@@ -1,0 +1,47 @@
+<mat-toolbar color="secondary">
+    <mat-toolbar-row>
+        <button class="app-button" (click)="volver()" mat-icon-button color="secondary"> <mat-icon>arrow_back</mat-icon></button>
+        <span class="title">Listado de centros Activos</span>
+        <button class="app-button" (click)="refreshCache()" mat-flat-button color="secondary"> <mat-icon>refresh</mat-icon>Actualizar </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-form-field *ngIf="!isLoading;">
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar. Centro">
+
+</mat-form-field>
+
+<div *ngIf="isLoading;" align="center">
+    <h2>Cargando centros por favor espere ....</h2>
+
+    <mat-spinner></mat-spinner>
+</div>
+
+
+<table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-column-id"> Id - Codigo </th>
+        <td mat-cell [style.color]="colorRow(row)" *matCellDef="let row" class="mat-column-numero"> {{row.id}} - {{row.codigo}} </td>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="centro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-column-fecha"> Centro </th>
+        <td mat-cell [style.color]="colorRow(row)" *matCellDef="let row" class="mat-column-fecha"> {{row.centro}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="cif">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-column-cif"> Cif </th>
+        <td mat-cell [style.color]="colorRow(row)" *matCellDef="let row" class="mat-column-estado"> {{row.cif}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 20, 35, 100]"></mat-paginator>

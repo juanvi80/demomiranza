@@ -1,0 +1,81 @@
+mysqlei:
+    image: mysql
+    container_name: mysqlei
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_USER=regadmin
+     - MYSQL_PASSWORD=123456
+     - MYSQL_DATABASE=regdb
+    
+    volumes:          
+     - ./conf-mysql/scripts/001-create-databases.sql:/docker-entrypoint-initdb.d/001-create-databases.sql
+     - ./conf-mysql/scripts/002-ei-script.sql:/docker-entrypoint-initdb.d/002-ei-script.sql
+     #- ./conf-mysql/scripts/003-citas-script.sql:/docker-entrypoint-initdb.d/003-citas-script.sql
+     #- /mnt/c/datos/desarrollo/chackray/vissum/demo/dockers/conf-mysql/my.cnf:/etc/mysql/my.cnf     
+mysqlcitas:
+    image: mysql
+    container_name: mysqlcitas
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_USER=regadmin
+     - MYSQL_PASSWORD=123456
+     - MYSQL_DATABASE=citas1
+    ports:
+     - "3306:3306"
+    volumes:          
+     - ./conf-mysql/scripts/001-create-databases.sql:/docker-entrypoint-initdb.d/001-create-databases.sql
+     #- ./conf-mysql/scripts/002-ei-script.sql:/docker-entrypoint-initdb.d/002-ei-script.sql
+     - ./conf-mysql/scripts/003-citas-script.sql:/docker-entrypoint-initdb.d/003-citas-script.sql
+postgrescitas:
+    image: postgres
+    container_name: postgrescitas
+    environment:          
+     - POSTGRES_PASSWORD=123456
+     - POSTGRES_DB=citas2
+    ports:
+     - "5432:5432"
+    volumes:          
+     - ./conf-postgres/scripts/001-create-databases.sql:/docker-entrypoint-initdb.d/001-create-databases.sql     
+     - ./conf-postgres/scripts/003-citas-script.sql:/docker-entrypoint-initdb.d/003-citas-script.sql
+     #- /mnt/c/datos/desarrollo/chackray/vissum/demo/dockers/conf-mysql/my.cnf:/etc/mysql/my.cnf     
+wso2ei:
+    image: wso2ei-integrator:6.5.0
+    container_name: wso2ei
+    links:
+     - mysqlei:mysqlei  
+     - mysqlcitas:mysqlcitas
+     - postgrescitas:postgrescitas 
+    restart: on-failure
+    ports:     
+     - "9005:9005"
+     - "5005:5005"
+     - "9006:9006"
+     - "8000:8000"
+     - "8280:8280"
+     - "8243:8243"
+     - "9443:9443"
+    #command: debug 5005 -Desb.debug=true
+    #command: -Desb.debug=super
+    volumes:
+     #- ./conf-ei/jndi.properties:/home/wso2carbon/wso2ei-6.5.0/conf/jndi.properties
+     - ./conf-ei/carbonapp/DemoVissumDataServiceCompositeApplication_1.0.0.car:/home/wso2carbon/wso2ei-6.5.0/repository/deployment/server/carbonapps/DemoVissumDataServiceCompositeApplication_1.0.0.car
+     - ./conf-ei/drivers/postgresql-42.2.12.jar:/home/wso2carbon/wso2ei-6.5.0/dropins/postgresql-42.2.12.jar
+     - ./conf-ei/carbon.xml:/home/wso2carbon/wso2ei-6.5.0/conf/carbon.xml
+     - ./conf-ei/datasources/master-datasources.xml:/home/wso2carbon/wso2ei-6.5.0/conf/datasources/master-datasources.xml
+     - ./conf-ei/log4j.properties:/home/wso2carbon/wso2ei-6.5.0/conf/log4j.properties
+     - ./conf-ei/synapse.properties:/home/wso2carbon/wso2ei-6.5.0/conf/synapse.properties
+     - ./conf-ei/security:/home/wso2carbon/wso2ei-6.5.0/repository/resources/security
+
+nginxei:
+    image: nginx
+    links:
+     - wso2ei:wso2ei
+    restart: on-failure
+    ports:
+     - "81:81"
+     - "80:80"
+     - "443:443"
+    volumes:
+     - ./conf-nginx/conf.d:/etc/nginx/conf.d
+     - ./conf-nginx/ssl:/etc/nginx/ssl
+     - ./conf-nginx/appweb/demomiranza:/srv/demomiranza

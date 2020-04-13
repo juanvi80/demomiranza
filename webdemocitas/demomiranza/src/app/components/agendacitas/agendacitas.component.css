@@ -1,0 +1,80 @@
+.example-card {
+    width: 50%;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+table {
+    width: 100%;
+}
+
+.tablapac {
+    height: 100px !important;
+}
+
+.titulo {
+    font-size: 24px;
+    /*font-weight: bold;*/
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.field-referencia {
+    font-size: 18px;
+    color: red;
+    width: 100%;
+}
+
+.mat-column-id {
+    flex: 0 0 15% !important;
+    min-width: 14px !important;
+}
+
+.mat-column-nombre {
+    flex: 0 0 70% !important;
+    min-width: 14px !important;
+}
+
+.mat-column-nif {
+    flex: 0 0 15% !important;
+    min-width: 14px !important;
+}
+
+.mat-column-medico {
+    flex: 0 0 30% !important;
+    min-width: 14px !important;
+}
+
+.mat-column-dpto {
+    flex: 0 0 20% !important;
+    min-width: 14px !important;
+}
+
+.mat-column-fecha {
+    flex: 0 0 20% !important;
+    min-width: 14px !important;
+}
+
+.mat-column-estado {
+    flex: 0 0 20% !important;
+    min-width: 14px !important;
+}
+
+.mat-column-centro {
+    flex: 0 0 20% !important;
+    min-width: 14px !important;
+}
+
+.mat-select {
+    height: 200px;
+}
+
+.mat-row:hover {
+    background-color: #eeeeee;
+}

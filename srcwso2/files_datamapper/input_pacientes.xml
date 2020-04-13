@@ -1,0 +1,42 @@
+<soapenv:Envelope
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+		<pacientes >
+			<paciente>
+        <id>1</id>
+        <numero>01</numero>
+        <nombre>NDEMO1</nombre>
+        <apellido1>DEMO1</apellido1>
+        <apellido2>DEMO1</apellido2>
+        <cif>CIF1</cif>
+		</paciente>
+		<paciente>
+			<id>2</id>
+			<numero>02</numero>
+			<nombre>NDEMO2</nombre>
+			<apellido1>DEMO2</apellido1>
+			<apellido2>DEMO2</apellido2>
+			<cif>CIF2</cif>
+		</paciente>
+		<paciente>
+			<id>3</id>
+			<numero>03</numero>
+			<nombre>NDEMO3</nombre>
+			<apellido1>DEMO3</apellido1>
+			<apellido2>DEMO3</apellido2>
+			<cif>CIF3</cif>
+		</paciente>
+		<paciente>
+			<id>4</id>
+			<numero>04</numero>
+			<nombre>NDEMO4</nombre>
+			<apellido1>DEMO4</apellido1>
+			<apellido2>DEMO4</apellido2>
+			<cif>CIF4</cif>
+		</paciente>
+		</pacientes>
+	</soapenv:Body>
+</soapenv:Envelope>
+	
